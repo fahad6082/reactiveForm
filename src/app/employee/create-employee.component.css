@@ -1,0 +1,24 @@
+.panel-primary{
+    background-color:rgba(90, 195, 160, 0.773);
+    text-align: center;
+    padding-left: 200px;
+    border-radius: 10px;
+    border:1px solid;
+    box-shadow: 5px 8px #c4c0c0;
+}
+/* 
+.panel-body{
+    text-align: center;
+    padding-left: 40%;
+
+} */
+.form-group{
+    padding: 5px 0px;
+}
+
+.spc{
+    margin-left: 3px; 
+}
+span{
+    color: red;
+}

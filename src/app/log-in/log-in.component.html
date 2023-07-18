@@ -1,0 +1,234 @@
+<form
+  [formGroup]="logInForm"
+  (ngSubmit)="onSubmit()"
+  class="form-horizontal"
+>
+  <div class="panel panel-primary p-5 mt-3">
+    <div class="panel-heading">
+      <h3 class="panel-title">Log In</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group d-flex" >
+        <label class="col-sm-2 control-labely" for="fullName">Full Name</label>
+        <div class="col-sm-8">
+          <input
+            id="fullName"
+            formControlName="fullName"
+            type="text"
+            class="form-control"
+            placeholder="John"
+          />
+          <span *ngIf="logInForm.get('fullName').errors && (logInForm.get('fullName').touched || logInForm.get('fullName').dirty)">
+            <span *ngIf="logInForm.get('fullName').errors?.required">
+              Full Name is required
+            </span>
+            <span *ngIf="logInForm.get('fullName').errors?.maxlength">
+              Name must be 10 character
+            </span>
+
+          </span>
+          <!-- <label>{{fullNameLength}}</label>
+          <span style="color: red;" class="help-block" *ngIf="formErrors.fullName">
+        {{formErrors.fullName}}
+        </span> -->
+        </div>
+      </div>
+
+      <div class="form-group d-flex" >
+        <label class="col-sm-2 control-label" for="fullName">Last Name</label>
+        <div class="col-sm-8">
+          <input
+            id="lastName"
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+            placeholder="Cena"
+          />
+          <span *ngIf="(logInForm.get('lastName').errors && logInForm.get('lastName').touched) || logInForm.get('lastName').dirty">
+           
+             <span *ngIf="logInForm.get('lastName')?.errors?.required">
+              Last Name is required
+            </span> 
+            <span *ngIf="logInForm.get('lastName').errors?.touched || logInForm.get('lastName').errors?.dirty">
+              need to fill
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group d-flex" >
+        <label class="col-sm-2 control-label" for="email">Email</label>
+        <div class="col-sm-8">
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            class="form-control"
+            placeholder="JohnCena@Ucan'tseeME"
+          />
+          <span *ngIf="logInForm.get('email')?.errors?.required && (logInForm.get('email')?.touched || logInForm.get('email')?.dirty)">
+            Please enter your email
+          </span>
+       </div>
+      </div>
+
+      <!-- <div class="form-group d-flex" [ngClass]="{'has-errors' : logInForm.get('contactNumber').errors && logInForm.get('contactNumber').touched || logInForm.get('contactNumber').dirty}">
+        <label class="col-sm-2 control-label" for="email">Mob No</label>
+        <div class="col-sm-8">
+          <input
+            id="contactNo"
+            formControlName="contactNumber"
+            type="number"
+            class="form-control"
+            placeholder="1234567890"
+          />
+          <span *ngIf="logInForm.get('contactNumber').errors && (logInForm.get('contactNumber').touched || logInForm.get('contactNumber').dirty)">
+            <span *ngIf="logInForm.get('contactNumber').errors.required">
+              Full Name is required
+            </span>
+            <span *ngIf="logInForm.get('contactNumber').errors.maxlength">
+              Name must be 10 character
+            </span>
+
+          </span>
+         
+        </div>
+      </div> -->
+
+      <div class="form-group d-flex">
+        <label class="col-sm-2 control-labely" for="contactNumber">Contact</label>
+        <div class="col-sm-8">
+          <input
+            id="contactNo."
+            formControlName="contactNumber"
+            type="number"
+            class="form-control"
+            placeholder="0987654321"
+          />
+          <span *ngIf="logInForm.get('contactNumber').errors && (logInForm.get('contactNumber').touched || logInForm.get('contactNumber').dirty)">
+            <span *ngIf="logInForm.get('contactNumber').errors?.required">
+              Full Name is required
+            </span>
+            <span *ngIf="logInForm.get('contactNumber').errors?.min || logInForm.get('contactNumber').errors?.max">
+              Name must be 10 character
+            </span>
+          </span>
+        </div>
+      </div>
+
+
+        <div class="form-group d-flex">
+
+          <label class="col-sm-2 control-label" for="skillName"> Skill </label>
+          <div class="col-sm-4 pe-3">
+            <input
+              type="text"
+              class="form-control"
+              id="skillName"
+              placeholder="Name"
+              formControlName="skillsName"
+            />
+            <span *ngIf="logInForm.get('skillsName').errors?.required && (logInForm.get('skillsName').touched || logInForm.get('skillsName').dirty)">
+              Please enter your skills
+            </span>
+          </div>
+
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Experience In Years"
+              formControlName="experienceInYears"
+            />
+            <span *ngIf="logInForm.get('experienceInYears').errors?.required && (logInForm.get('experienceInYears').touched || logInForm.get('experienceInYears').dirty)">
+              Please enter your Experience
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group d-flex ">
+          <label class="col-md-2 control-label">Language known</label>
+
+          <ng-container *ngFor="let language of programmingLanguages" >
+            <input
+              class="ms-2"
+              type="checkbox"
+              [id]="language"
+              [value]="language"
+              name="languageKnow"
+              formControlName="languageKnow"
+              (click)="onLanguageClick($event)">
+
+            <label class="spc" [for]="language">
+              {{ language }}
+            </label>
+          </ng-container>
+          <!-- <input class="ms-3" type="checkbox" id="ionic" value="ionic" name="Bike"  formControlName="languageKnow">
+          <label class="spc" for="ionic"> Ionic</label>
+         
+          <input class="ms-3" type="checkbox" id="html" value="html" name="Bike"  formControlName="languageKnow"> 
+          <label class="spc" for="html"> HTML</label>
+          
+          <input class="ms-3" type="checkbox" id="css" value="css" name="Bike"  formControlName="languageKnow">
+          <label class="spc" for="css"> CSS</label> -->
+        </div>
+
+        <div class="form-group d-flex" >
+          <label class="col-md-2 control-label">Proficiency</label>
+          <div class="col-md-8 d-flex" >
+            
+            <input
+              id="beginner"
+              type="radio"
+              value="beginner"
+              name="proficiency"
+              formControlName="proficiency"
+            />
+            <label for="beginner" class="radio-inline pe-3 spc ">
+              Beginner
+            </label>
+
+            <input
+              id="intermediate"
+              type="radio"
+              value="intermediate"
+              name="proficiency"
+              formControlName="proficiency"
+            />
+            <label for="intermediate" class="radio-inline pe-3 spc">
+              Intermediate
+            </label>
+
+            <input
+              id="advanced"
+              type="radio"
+              value="advanced"
+              name="proficiency"
+              formControlName="proficiency"
+            />
+            <label for="advanced" class="radio-inline pe-3 spc">
+              Advanced
+            </label>
+            <span *ngIf="logInForm.get('proficiency').touched && logInForm.get('proficiency').errors">
+              <span *ngIf="logInForm.get('proficiency').errors?.required">
+                Proficiency is required
+              </span>
+
+            </span>
+            <!-- <span *ngIf="logInForm.get('proficiency').errors?.required">
+              Please select
+            </span> -->
+          </div>
+        </div>
+
+      </div>
+
+        <div class="class-footer">
+          <div class="btn-toolbar pb-1">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-primary ms-1" type="button" (click)="onLoadDataClick()">Data</button>
+          </div>
+        </div>
+    
+  </div>
+</form>
